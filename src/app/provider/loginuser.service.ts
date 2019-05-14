@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SERVER_URL} from '../../environments/environment';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {catchError, delay} from 'rxjs/operators';
+import {GlobalService} from '../global_function/global_function';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,11 @@ import {catchError, delay} from 'rxjs/operators';
 export class LoginuserService {
 
   private url: string;
-  constructor(public httpClient: HttpClient) {
+  constructor(
+      public httpClient: HttpClient,
+      public globalService: GlobalService
+  ) {
     this.url = SERVER_URL;
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('Ocurrio un error ', error.error.message);
-    } else {
-      console.error(
-          `Backend código devuelto ${error.status}, ` +
-          `body was: ${error.error}`
-      );
-    }
-    return throwError('Algo salio mal; Por favor, intentelo de nuevo mas tarde.');
   }
 
   loginUser(formlogin): Observable<any> {
@@ -33,7 +25,13 @@ export class LoginuserService {
     };
     return this.httpClient.post(`${this.url}/api/login`, formlogin, option)
         .pipe(delay(1000),
-            catchError(this.handleError));
+            catchError(this.globalService.handleError));
+  }
+
+  cerrarSession(): Observable<any> {
+    return this.httpClient.get(`${this.url}/api/login`)
+        .pipe(delay(1000),
+            catchError(this.globalService.handleError));
   }
 
 }

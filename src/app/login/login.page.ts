@@ -59,6 +59,10 @@ export class LoginPage implements OnInit {
             .subscribe(res => {
                 if (res.validate) {
                     this.showLoading('Cargando Datos ...', true);
+                    this.storage.set('codigo', res[0][0]["cod_datos_usuarios"]);
+                    this.storage.set('nombre', res[0][0]['nombre']);
+                    this.storage.set('apellido', res[0][0]['apellido']);
+                    this.storage.set('perfil', res[0][0]['cod_perfil']);
                 }
                 if (!res.validate) {
                     this.alertToast(res.mensaje, 'danger', 'middle', 1500);

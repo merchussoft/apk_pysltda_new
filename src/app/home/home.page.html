@@ -9,5 +9,64 @@
     </ion-toolbar>
 </ion-header>
 
+<ion-content padding>
+    <div>
+        <ion-item>
+            <ion-label style="text-align: center;">
+                <ion-card-title>Reporte Horas</ion-card-title>
+                <input type="file" name="uploadExcel"/>
+            </ion-label>
+            <ion-icon name="cloud-upload" slot="end" (click)="importarExcel()"></ion-icon>
+        </ion-item>
+    </div>
 
-<ion-button expand="full" (click)="openMenu()">open menu</ion-button>
+    <ion-list *ngIf="reportlistArray === undefined">
+        <ion-item *ngFor=" let cositas of [1,1,1,1,1,1]">
+            <ion-thumbnail slot="start">
+                <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+                <h3>
+                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                </h3>
+                <p>
+                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                </p>
+                <p>
+                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                </p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+
+    <div class="table-responsive" *ngIf="reportlistArray !== undefined">
+        <table class="table table-striped" width="100%">
+            <thead>
+            <tr style="text-align: center;">
+                <th>Fecha Reporte</th>
+                <th>Horas Trabajadas</th>
+                <th>Actividad</th>
+                <th>Detalle Actividad</th>
+                <th>Tipo Actividad</th>
+                <th>Iniciativa</th>
+                <th>Proceso</th>
+                <th>Modulo</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor=" let tableReport of reportlistArray">
+                <td>{{tableReport.fecha_reporte}}</td>
+                <td style="text-align: center;">{{tableReport.horas_trabajadas}}</td>
+                <td style="text-align: center;">{{tableReport.actividad}}</td>
+                <td>{{tableReport.detalle_actividad}}</td>
+                <td style="text-align: center;">{{tableReport.tipo_actividad}}</td>
+                <td>{{tableReport.iniciativa}}</td>
+                <td style="text-align: center;">{{tableReport.proceso}}</td>
+                <td style="text-align: center;">{{tableReport.modulo}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</ion-content>

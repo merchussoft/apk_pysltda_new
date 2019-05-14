@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Relacion de Horas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #RelacionHorasForm="ngForm" (ngSubmit)="enviarHoras()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Fecha Reporte</ion-label>
+        <ion-datetime display-format="YYYY-MM-DD" placeholder="Seleccionar Fecha" name="fechareporte"
+                      #fechareporte="ngModel" [(ngModel)]="reporte.fechareporte" cancel-text ="Cancelar" done-text="Aceptar" mode="md"></ion-datetime>
+      </ion-item>
+
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo Actividad</ion-label>
+        <ion-select placeholder="Seleccionar" name="tipoactividad" #tipoactividad="ngModel"
+                    [(ngModel)]="reporte.tipoactividad">
+          <ion-select-option *ngFor="let valueTipoactividad of tipoactividades"
+                             value="{{valueTipoactividad.cod_tipo_actividad}}">{{valueTipoactividad.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="7">
+              <ion-label>Iniciativa</ion-label>
+            </ion-col>
+            <ion-input placeholder="#### (descripcion)" name="iniciativa" #iniciativa="ngModel"
+                       [(ngModel)]="reporte.iniciativa"></ion-input>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Proceso</ion-label>
+        <ion-select placeholder="Seleccionar" name="proceso" #proceso="ngModel" [(ngModel)]="reporte.proceso">
+          <ion-select-option *ngFor="let valueProceso of procesos"
+                             value="{{valueProceso.cod_proceso}}">{{valueProceso.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Actividad</ion-label>
+        <ion-select placeholder="Seleccionar" name="actividad" #actividad="ngModel"
+                    [(ngModel)]="reporte.actividad">
+          <ion-select-option *ngFor="let valueActividades of actividades"
+                             value="{{valueActividades.cod_actividad}}">{{valueActividades.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Modulo</ion-label>
+        <ion-select placeholder="Seleccionar" name="modulo" #modulo="ngModel" [(ngModel)]="reporte.modulo">
+          <ion-select-option *ngFor="let valueModulo of modulos"
+                             value="{{valueModulo.cod_modulo}}">{{valueModulo.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="7">
+              <ion-label>Horas Trabajadas</ion-label>
+            </ion-col>
+            <ion-input placeholder="08:00" name="horas" #horas="ngModel"
+                       [(ngModel)]="reporte.horas"></ion-input>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label>Detalle Actividad</ion-label>
+            </ion-col>
+            <ion-textarea placeholder="Describa la actividad realizada" name="detalleactividad"
+                          #detalleactividad="ngModel" [(ngModel)]="reporte.detalleactividad"></ion-textarea>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" shape="round" type="submit">Registrar</ion-button>
+  </form>
+</ion-content>
