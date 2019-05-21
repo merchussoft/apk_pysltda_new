@@ -15,7 +15,7 @@
       <ion-item>
         <ion-label>Fecha Reporte</ion-label>
         <ion-datetime display-format="YYYY-MM-DD" placeholder="Seleccionar Fecha" name="fechareporte"
-                      #fechareporte="ngModel" [(ngModel)]="reporte.fechareporte" cancel-text ="Cancelar" done-text="Aceptar" mode="md"></ion-datetime>
+                      #fechareporte="ngModel" [(ngModel)]="reporte.fechareporte" cancel-text ="Cancelar" done-text="Aceptar" mode="md" required></ion-datetime>
       </ion-item>
 
     </ion-list>
@@ -23,7 +23,7 @@
       <ion-item>
         <ion-label>Tipo Actividad</ion-label>
         <ion-select placeholder="Seleccionar" name="tipoactividad" #tipoactividad="ngModel"
-                    [(ngModel)]="reporte.tipoactividad">
+                    [(ngModel)]="reporte.tipoactividad" required>
           <ion-select-option *ngFor="let valueTipoactividad of tipoactividades"
                              value="{{valueTipoactividad.cod_tipo_actividad}}">{{valueTipoactividad.nombre}}</ion-select-option>
         </ion-select>
@@ -36,8 +36,8 @@
             <ion-col size="7">
               <ion-label>Iniciativa</ion-label>
             </ion-col>
-            <ion-input placeholder="#### (descripcion)" name="iniciativa" #iniciativa="ngModel"
-                       [(ngModel)]="reporte.iniciativa"></ion-input>
+            <ion-input placeholder="0000" mask="0000000000" maxlength="10" name="iniciativa" #iniciativa="ngModel"
+                       [(ngModel)]="reporte.iniciativa" required></ion-input>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -45,7 +45,7 @@
     <ion-list>
       <ion-item>
         <ion-label>Proceso</ion-label>
-        <ion-select placeholder="Seleccionar" name="proceso" #proceso="ngModel" [(ngModel)]="reporte.proceso">
+        <ion-select placeholder="Seleccionar" name="proceso" #proceso="ngModel" [(ngModel)]="reporte.proceso" required>
           <ion-select-option *ngFor="let valueProceso of procesos"
                              value="{{valueProceso.cod_proceso}}">{{valueProceso.nombre}}</ion-select-option>
         </ion-select>
@@ -55,7 +55,7 @@
       <ion-item>
         <ion-label>Actividad</ion-label>
         <ion-select placeholder="Seleccionar" name="actividad" #actividad="ngModel"
-                    [(ngModel)]="reporte.actividad">
+                    [(ngModel)]="reporte.actividad" required>
           <ion-select-option *ngFor="let valueActividades of actividades"
                              value="{{valueActividades.cod_actividad}}">{{valueActividades.nombre}}</ion-select-option>
         </ion-select>
@@ -64,7 +64,7 @@
     <ion-list>
       <ion-item>
         <ion-label>Modulo</ion-label>
-        <ion-select placeholder="Seleccionar" name="modulo" #modulo="ngModel" [(ngModel)]="reporte.modulo">
+        <ion-select placeholder="Seleccionar" name="modulo" #modulo="ngModel" [(ngModel)]="reporte.modulo" required>
           <ion-select-option *ngFor="let valueModulo of modulos"
                              value="{{valueModulo.cod_modulo}}">{{valueModulo.nombre}}</ion-select-option>
         </ion-select>
@@ -77,8 +77,8 @@
             <ion-col size="7">
               <ion-label>Horas Trabajadas</ion-label>
             </ion-col>
-            <ion-input placeholder="08:00" name="horas" #horas="ngModel"
-                       [(ngModel)]="reporte.horas"></ion-input>
+            <ion-input placeholder="08:00" mask="00:00" name="horas" #horas="ngModel"
+                       [(ngModel)]="reporte.horas" maxlength="5" required></ion-input>
           </ion-row>
         </ion-grid>
       </ion-item>
@@ -91,11 +91,11 @@
               <ion-label>Detalle Actividad</ion-label>
             </ion-col>
             <ion-textarea placeholder="Describa la actividad realizada" name="detalleactividad"
-                          #detalleactividad="ngModel" [(ngModel)]="reporte.detalleactividad"></ion-textarea>
+                          #detalleactividad="ngModel" [(ngModel)]="reporte.detalleactividad" required></ion-textarea>
           </ion-row>
         </ion-grid>
       </ion-item>
     </ion-list>
-    <ion-button expand="full" shape="round" type="submit">Registrar</ion-button>
+    <ion-button expand="full" shape="round" type="submit" [disabled]="!RelacionHorasForm.form.valid">Registrar</ion-button>
   </form>
 </ion-content>

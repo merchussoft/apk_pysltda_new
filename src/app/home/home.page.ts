@@ -1,45 +1,49 @@
-import { Component, Inject } from '@angular/core';
-import {MenuController} from '@ionic/angular';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MenuController, NavController} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
-import { DOCUMENT } from '@angular/common';
+import {AdminuserService} from '../provider/adminuser.service';
+import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  public id: string;
-  private angular: any;
+    public id: string;
+    private angular: any;
+    public listHours: any;
+    public cod_usuario: Observable<any>;
 
-  constructor(
-      private menuCtrl: MenuController,
-      public storage: Storage,
-      @Inject(DOCUMENT) document
-  ) {
-    this.relacionHoras();
-  }
+    constructor(
+        public storage: Storage,
+        public navCtrl: NavController,
+        public adminUser: AdminuserService
+    ) {
+        this.storage.get('nombre').then((nombre) => {
+            if (nombre === null) {
+                this.navCtrl.navigateRoot('/login');
+            }
+        });
+        this.listHours = [];
+    }
 
-  relacionHoras() {
-var ids =  '';
-this.storage.get('codigo').then((codigo) => {
-      ids = codigo;
-console.log('mirndo algo aqui ==> ', ids);
-    });
+    ngOnInit() {
+        this.relacionHoras();
+    }
 
-  }
+    relacionHoras() {
+        this.storage.get('codigo').then((codigo) => {
+            this.adminUser.reportsHoursUser(codigo)
+                .subscribe((res) => {
+                    this.listHours = res;
+                }, error => {
+                    console.log('revisando el error ==> ', error);
+                });
 
-  closeMenusss() {
-    // document.getElementById('sideNavigation').style.width = '250px';
-    // document.getElementById('main').style.marginLeft = '250px';
+        });
 
-    document.getElementById('sideNavigation').setAttribute('style', 'width:250px;');
-    document.getElementById('main').setAttribute('style', 'marginLeft:250px;');
-  }
+    }
 
-   openMenu() {
-    document.getElementById('sideNavigation').setAttribute('style', 'width:0;');
-    document.getElementById('main').setAttribute('style', 'marginLeft:0;');
-  }
 }

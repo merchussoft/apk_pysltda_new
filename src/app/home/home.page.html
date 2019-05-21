@@ -1,86 +1,26 @@
-<!--<ion-header>-->
-<!--    <ion-toolbar color="primary">-->
-<!--        <ion-buttons slot="start">-->
-<!--            <ion-menu-button></ion-menu-button>-->
-<!--        </ion-buttons>-->
-<!--        <ion-title>-->
-<!--            Home-->
-<!--        </ion-title>-->
-<!--    </ion-toolbar>-->
-<!--</ion-header>-->
-
-<div id="sideNavigation" class="sidenav">
-<!--    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>-->
-    <span style="color:#fff;" class="closebtn" (click)="openMenu()">&times;</span>
-<!--    <a href="#">About</a>-->
-<!--    <a href="#">Features</a>-->
-<!--    <a href="#">Contact Us</a>-->
-    <ion-list>
-        <ion-item [routerDirection]="'root'" [routerLink]='home'>
-            <ion-icon slot="start" name="airplane"></ion-icon>
-            <ion-label>
-                hola mundo
-            </ion-label>
-        </ion-item>
-
-        <ion-item [routerDirection]="'root'" [routerLink]='relacionhoras'>
-            <ion-icon slot="start" name="calendar"></ion-icon>
-            <ion-label>
-                hola mundo 4
-            </ion-label>
-        </ion-item>
-    </ion-list>
-</div>
-
-<nav class="topnav">
-    <ion-button color="default" (click)="closeMenusss()">
-        <svg width="30" height="30" id="icoOpen">
-            <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-            <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-            <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
-        </svg>
-    </ion-button>
-<!--    <a href="#" onclick="openNav()">-->
-<!--        <svg width="30" height="30" id="icoOpen">-->
-<!--            <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>-->
-<!--            <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>-->
-<!--            <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>-->
-<!--        </svg>-->
-<!--    </a>-->
-</nav>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
 
 <ion-content padding>
     <div>
         <ion-item>
             <ion-label style="text-align: center;">
                 <ion-card-title>Reporte Horas</ion-card-title>
-                <input type="file" name="uploadExcel"/>
+<!--                <input type="file" name="uploadExcel"/>-->
             </ion-label>
-            <ion-icon name="cloud-upload" slot="end" (click)="importarExcel()"></ion-icon>
+<!--            <ion-icon name="cloud-upload" slot="end" (click)="importarExcel()"></ion-icon>-->
         </ion-item>
     </div>
 
-    <ion-list *ngIf="reportlistArray === undefined">
-        <ion-item *ngFor=" let cositas of [1,1,1,1,1,1]">
-            <ion-thumbnail slot="start">
-                <ion-skeleton-text animated></ion-skeleton-text>
-            </ion-thumbnail>
-            <ion-label>
-                <h3>
-                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                </h3>
-                <p>
-                    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-                </p>
-                <p>
-                    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                </p>
-            </ion-label>
-        </ion-item>
-    </ion-list>
-
-
-    <div class="table-responsive" *ngIf="reportlistArray !== undefined">
+    <div class="table-responsive">
         <table class="table table-striped" width="100%">
             <thead>
             <tr style="text-align: center;">
@@ -96,7 +36,7 @@
             </thead>
 
             <tbody>
-            <tr *ngFor=" let tableReport of reportlistArray">
+            <tr *ngFor=" let tableReport of listHours">
                 <td>{{tableReport.fecha_reporte}}</td>
                 <td style="text-align: center;">{{tableReport.horas_trabajadas}}</td>
                 <td style="text-align: center;">{{tableReport.actividad}}</td>
