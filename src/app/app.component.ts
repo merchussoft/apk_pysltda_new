@@ -4,6 +4,7 @@ import {NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LoginuserService} from './provider/loginuser.service';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,11 @@ export class AppComponent implements OnInit {
       title: 'Reporte Horas',
       url: '/relacionhoras',
       icon: 'calendar'
+    },
+    {
+      title: 'Actas Codereview',
+      url: '/actascodereview',
+      icon: 'book'
     }
   ];
 
@@ -28,7 +34,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private loginUserService: LoginuserService,
+    private storage: Storage,
     public navCtrl: NavController
   ) {
     this.initializeApp();
@@ -44,10 +50,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('aqui de inicia todo de nuevo');
   }
 
   cerrarSession() {
+    this.storage.clear();
     //this.loginUserService.cerrarSession();
     this.navCtrl.navigateRoot('/login');
   }

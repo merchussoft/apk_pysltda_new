@@ -25,26 +25,30 @@
             <thead>
             <tr style="text-align: center;">
                 <th>Fecha Reporte</th>
-                <th>Horas Trabajadas</th>
+                <th>Hora Inicio</th>
+                <th>Hora Final</th>
                 <th>Actividad</th>
                 <th>Detalle Actividad</th>
                 <th>Tipo Actividad</th>
                 <th>Iniciativa</th>
                 <th>Proceso</th>
                 <th>Modulo</th>
+                <th>Direccion</th>
             </tr>
             </thead>
 
             <tbody>
             <tr *ngFor=" let tableReport of listHours">
                 <td>{{tableReport.fecha_reporte}}</td>
-                <td style="text-align: center;">{{tableReport.horas_trabajadas}}</td>
+                <td style="text-align: center;">{{tableReport.hora_inicio}}</td>
+                <td style="text-align: center;">{{tableReport.hora_final}}</td>
                 <td style="text-align: center;">{{tableReport.actividad}}</td>
                 <td>{{tableReport.detalle_actividad}}</td>
                 <td style="text-align: center;">{{tableReport.tipo_actividad}}</td>
                 <td>{{tableReport.iniciativa}}</td>
                 <td style="text-align: center;">{{tableReport.proceso}}</td>
                 <td style="text-align: center;">{{tableReport.modulo}}</td>
+                <td style="text-align: center;">{{tableReport.direccion}}</td>
             </tr>
             </tbody>
         </table>
