@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {NavController, Platform} from '@ionic/angular';
+import {LoadingController, NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { LoginuserService} from './provider/loginuser.service';
 import {Storage} from '@ionic/storage';
 
 @Component({
@@ -35,7 +34,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private storage: Storage,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loadingController: LoadingController
   ) {
     this.initializeApp();
 
@@ -52,9 +52,26 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
+  showLoading(menssage) {
+    this.loadingController.create({
+      message: menssage,
+      spinner: 'lines',
+      mode: 'ios'
+    }).then((loading) => {
+      loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+        this.cerrarSesion();
+      }, 2000);
+    });
+  }
+
   cerrarSession() {
+    this.showLoading('Cerrando sesion ...');
+  }
+
+  cerrarSesion() {
     this.storage.clear();
-    //this.loginUserService.cerrarSession();
     this.navCtrl.navigateRoot('/login');
   }
 }
