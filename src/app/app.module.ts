@@ -17,6 +17,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

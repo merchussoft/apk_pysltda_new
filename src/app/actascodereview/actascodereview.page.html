@@ -14,12 +14,13 @@
 
     <ion-card>
         <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
+            <ion-card-title>Acta 001</ion-card-title>
         </ion-card-header>
 
         <ion-card-content (click)="openLocalPdf()">
-            <pdf-viewer [src]="viewfilePath" [render-text]="true" [zoom]="0.5" [original-size]="false"
-                        style="display: block; width: 100%; height: 150px"></pdf-viewer>
+            {{viewfilePath}}
+            <pdf-viewer src="{{viewfilePath}}" [render-text]="true" [original-size]="false" [page]="1"
+                        style="display: block; width: 100%; height: 55px"></pdf-viewer>
         </ion-card-content>
     </ion-card>
 
