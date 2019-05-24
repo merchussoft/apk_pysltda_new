@@ -14,8 +14,9 @@ import {NgxMaskIonicModule} from 'ngx-mask-ionic';
 
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+ //import { DocumentViewer } from '@ionic-native/document-viewer';
+ //import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 // @ts-ignore
 // @ts-ignore
@@ -29,13 +30,13 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     NgxMaskIonicModule.forRoot(),
-    PdfViewerModule
+    //PdfViewerModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-      File, FileTransfer, DocumentViewer
+      File, FileTransfer, FileOpener//, DocumentViewer
   ],
   bootstrap: [AppComponent]
 })
