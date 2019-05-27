@@ -51,4 +51,15 @@ export class AdminuserService {
             .pipe(delay(1000));
     }
 
+    registerActas(dataActas) {
+        // tslint:disable-next-line:variable-name
+        const headers_send = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+        const option = {
+            headers: headers_send
+        };
+
+        return this.httpClient.post(`${this.url}/api/insertactas`, dataActas, option)
+            .pipe(delay(1000));
+    }
+
 }

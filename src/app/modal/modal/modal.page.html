@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button icon-only (click)="close_modal()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" no-line>
+                <div text-center>
+                    <h4>Agregar Actas</h4>
+                </div>
+
+                <form #actasForm="ngForm" >
+                    <div padding>
+                        <ion-item>
+                            <ion-input type="text" placeholder="Titulo"  #tituloActas="ngModel" [(ngModel)]="actas.titulo" name="tituloActas"  require></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-input type="text" placeholder="Descripcion" #descripcionActas="ngModel" [(ngModel)]="actas.descripcion" name="descripcionActas" require></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <div class="fileUpload btn btn-block btn-primary">
+                                <span>Cargar Archivo</span>
+                                <ion-input type="file" class="upload" (change)="changeListener($event)" multiple require></ion-input>
+<!--                                <ion-input type="file" class="upload" #filesActas="ngModel" [(ngModel)]="actas.files" name="filesActas" multiple require></ion-input>-->
+<!--                                <ion-input type="file" class="upload"#filesActas="ngModel" [(ngModel)]="actas.files" name="filesActas" require></ion-input>-->
+                            </div>
+                        </ion-item>
+                        <span>{{nameFile}}</span>
+                    </div>
+
+                    <div padding>
+                        <ion-button size="large" expand="block" type="submit" [disabled]="!actasForm.form.valid" (click)="save_actas(actasForm.value)">
+                            Guardar
+                        </ion-button>
+                    </div>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

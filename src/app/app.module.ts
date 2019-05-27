@@ -11,11 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxMaskIonicModule} from 'ngx-mask-ionic';
+import { ModalPageModule } from './modal/modal/modal.module';
 
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
- //import { DocumentViewer } from '@ionic-native/document-viewer';
- //import { PdfViewerModule } from 'ng2-pdf-viewer';
+ // import { DocumentViewer } from '@ionic-native/document-viewer';
+ // import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 // @ts-ignore
@@ -30,6 +31,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     NgxMaskIonicModule.forRoot(),
+    ModalPageModule
     //PdfViewerModule
   ],
   providers: [
